@@ -11,3 +11,5 @@ generateCaslSubjectsToFile(overrides, {
   prismaSchemaPath: 'test/prisma/schema.prisma',
   outputPath: 'test/generated/subjectsList.ts',
 });
+//npm run test
+//the result will be in: 'test/generated/subjectsList.ts' file
