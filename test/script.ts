@@ -1,10 +1,13 @@
-import { generateCaslSubjectsToFile } from 'casl-prisma-generator';
+import { generateCaslSubjectsToFile } from 'casl-prisma-generator/generate';
 
 const overrides = {
   User: {
     typeName: 'JwtUser',
-    importPath: "import { JwtUser } from 'src/auth/types';",
+    importPath: "import { JwtUser } from 'test/auth-types';",
   },
 };
 
-generateCaslSubjectsToFile(overrides);
+generateCaslSubjectsToFile(overrides, {
+  prismaSchemaPath: 'test/prisma/schema.prisma',
+  outputPath: 'test/generated/subjectsList.ts',
+});
