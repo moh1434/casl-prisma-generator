@@ -1,12 +1,12 @@
-import * as fs from 'fs';
-import * as path from 'path';
+import { writeFileSync, mkdirSync, WriteFileOptions } from 'fs';
+import { dirname } from 'path';
 
 export function writeFileSyncRecursive(
   filePath: string,
   content: string | NodeJS.ArrayBufferView,
-  charset?: fs.WriteFileOptions,
+  charset?: WriteFileOptions,
 ) {
-  fs.mkdirSync(path.dirname(filePath), {recursive: true})
+  mkdirSync(dirname(filePath), { recursive: true });
 
-  fs.writeFileSync(filePath, content, charset);
+  writeFileSync(filePath, content, charset);
 }

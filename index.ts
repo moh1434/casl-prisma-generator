@@ -1,9 +1,10 @@
-import * as fs from 'fs';
-import * as path from 'path';
+import { readFileSync } from 'fs';
+import { resolve } from 'path';
+
 import { writeFileSyncRecursive } from './writeFileSyncRecursive';
 
 function extractModelsNames(prismaSchemaPath) {
-  const schemaContent = fs.readFileSync(prismaSchemaPath).toString();
+  const schemaContent = readFileSync(prismaSchemaPath).toString();
 
   const regex = /model\s+(\w+)\s+{/g;
   const matches: string[] = [];
@@ -64,7 +65,7 @@ function generateCaslSubjectsList(
 }
 
 const defaultPaths = {
-  outputPath: path.resolve(__dirname, 'generated/subjectsList.ts'),
+  outputPath: resolve(__dirname, 'generated/subjectsList.ts'),
   prismaSchemaPath: 'prisma/schema.prisma',
   prismaClientPath: '@prisma/client',
 };

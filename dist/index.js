@@ -12,11 +12,11 @@ var __assign = (this && this.__assign) || function () {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.generateCaslSubjectsToFile = void 0;
-var fs = require("fs");
-var path = require("path");
+var fs_1 = require("fs");
+var path_1 = require("path");
 var writeFileSyncRecursive_1 = require("./writeFileSyncRecursive");
 function extractModelsNames(prismaSchemaPath) {
-    var schemaContent = fs.readFileSync(prismaSchemaPath).toString();
+    var schemaContent = (0, fs_1.readFileSync)(prismaSchemaPath).toString();
     var regex = /model\s+(\w+)\s+{/g;
     var matches = [];
     var match;
@@ -62,7 +62,7 @@ function generateCaslSubjectsList(models, prismaClientPath, overrides) {
     return result;
 }
 var defaultPaths = {
-    outputPath: path.resolve(__dirname, 'generated/subjectsList.ts'),
+    outputPath: (0, path_1.resolve)(__dirname, 'generated/subjectsList.ts'),
     prismaSchemaPath: 'prisma/schema.prisma',
     prismaClientPath: '@prisma/client',
 };
