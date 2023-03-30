@@ -22,7 +22,7 @@ function extractModelsNames(prismaSchemaPath) {
     while ((match = regex.exec(schemaContent)) !== null) {
         matches.push(match[1]);
     }
-    return matches;
+    return matches; //['User', 'Post', ...]
 }
 function generateCaslSubjectsList(models, prismaClientPath, overrides) {
     if (overrides === void 0) { overrides = {}; }
@@ -34,6 +34,7 @@ function generateCaslSubjectsList(models, prismaClientPath, overrides) {
             throw new Error(error);
         }
     }
+    //
     var customImports = [];
     var prismaImports = [];
     var content = ['export type SubjectsList = {'];
@@ -64,10 +65,25 @@ var defaultPaths = {
     prismaSchemaPath: 'prisma/schema.prisma',
     prismaClientPath: '@prisma/client',
 };
+/**
+ * @example
+ * const overrides: OverrideSubjects = {
+ *   User: {
+ *     typeName: 'JwtUser',
+ *     importPath: "import { JwtUser } from 'src/auth/types';",
+ *   },
+ * };
+ * generateCaslSubjectsToFile('generated/subjectsList.ts',overrides , {
+ *   prismaSchemaPath: 'prisma/schema.prisma',
+ *   prismaClientPath: '@prisma/client',
+ * });
+ * @example
+ * generateCaslSubjectsToFile('generated/subjectsList.ts');
+ */
 function generateCaslSubjectsToFile(outputPath, overrides, pathsConfig) {
     if (overrides === void 0) { overrides = {}; }
     if (pathsConfig === void 0) { pathsConfig = defaultPaths; }
-    var paths = __assign(__assign({}, defaultPaths), pathsConfig);
+    var paths = __assign(__assign({}, defaultPaths), pathsConfig); //merge paths
     var prismaModels = extractModelsNames(paths.prismaSchemaPath);
     (0, writeFileSyncRecursive_1.writeFileSyncRecursive)(outputPath, generateCaslSubjectsList(prismaModels, paths.prismaClientPath, overrides));
 }
