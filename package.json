@@ -2,7 +2,7 @@
   "name": "casl-prisma-generator",
   "version": "1.0.0",
   "description": "This package generates subjects for CASL from prisma schema models",
-  "main": "generate.js",
+  "main": "index.ts",
   "scripts": {
     "test": "npx ts-node ./test/script.ts"
   },

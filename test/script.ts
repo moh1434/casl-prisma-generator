@@ -1,4 +1,4 @@
-import { generateCaslSubjectsToFile } from 'casl-prisma-generator/generate';
+import { generateCaslSubjectsToFile } from 'casl-prisma-generator';
 
 const overrides = {
   User: {
