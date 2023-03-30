@@ -14,5 +14,8 @@
     "subjects"
   ],
   "author": "moh1434",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^18.15.11"
+  }
 }
