@@ -14,12 +14,16 @@
     "generator",
     "subjects"
   ],
-  "author": "moh1434",
-  "license": "MIT",
   "devDependencies": {
     "@types/node": "^18.15.11"
   },
   "dependencies": {
     "typescript": "^5.0.2"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/moh1434/casl-prisma-generator.git"
+  },
+  "author": "moh1434",
+  "license": "MIT"
 }
