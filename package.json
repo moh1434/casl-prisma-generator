@@ -5,7 +5,7 @@
   "main": "index.ts",
   "scripts": {
     "build": "tsc -p ./tsconfig.json",
-    "test": "npx ts-node ./test/script.ts"
+    "test": "ts-node --esm   ./test/script.ts"
   },
   "keywords": [
     "CASL",
