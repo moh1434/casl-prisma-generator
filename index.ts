@@ -3,7 +3,7 @@ import { resolve } from 'path';
 
 import { writeFileSyncRecursive } from './writeFileSyncRecursive';
 
-function extractModelsNames(prismaSchemaPath) {
+function extractModelsNames(prismaSchemaPath: string) {
   const schemaContent = readFileSync(prismaSchemaPath).toString();
 
   const regex = /model\s+(\w+)\s+{/g;
@@ -93,9 +93,9 @@ const defaultPaths = {
  */
 export function generateCaslSubjectsToFile(
   overrides: OverrideSubjects = {},
-  paths: Partial<typeof defaultPaths> = defaultPaths,
+  pathsConfig: Partial<typeof defaultPaths> = defaultPaths,
 ) {
-  paths = { ...defaultPaths, ...paths }; //merge paths
+  const paths = { ...defaultPaths, ...pathsConfig }; //merge paths
 
   const prismaModels = extractModelsNames(paths.prismaSchemaPath);
   writeFileSyncRecursive(
