@@ -3,7 +3,7 @@ import { generateCaslSubjectsToFile } from 'casl-prisma-generator';
 const overrides = {
   User: {
     typeName: 'JwtUser',
-    importPath: "import { JwtUser } from 'test/auth-types';",
+    importPath: "import { JwtUser } from './../auth-types';",
   },
 };
 
