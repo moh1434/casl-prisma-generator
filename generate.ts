@@ -34,10 +34,7 @@ function generateCaslSubjectsList(
   const customImports: string[] = [];
   const prismaImports: string[] = [];
 
-  const content = [
-    "/** this file is auto generated, don't touch it **/\n",
-    'export type SubjectsList = {',
-  ];
+  const content = ['export type SubjectsList = {'];
   models.map((model) => {
     if (model in overrides) {
       customImports.push(overrides[model].importPath);
@@ -54,6 +51,7 @@ function generateCaslSubjectsList(
   const allPrismaImports = `import { ${stringPrismaImportsNames} } from '${prismaClientPath}';`;
 
   const result =
+    "/** this file is auto generated, don't touch it **/\n\n" +
     allPrismaImports +
     '\n' +
     stringCustomImports +
@@ -73,7 +71,7 @@ const defaultPaths = {
 /**
  * @example
  * generateCaslSubjectsToFile();
- * 
+ *
  * @example
  * generateCaslSubjectsToFile({
  *   User: {
