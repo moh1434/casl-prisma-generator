@@ -19,5 +19,5 @@
     "noFallthroughCasesInSwitch": false,
     "typeRoots": ["./node_modules/@types"]
   },
-  "exclude":["node_modules","dist","test/"],
+  "exclude":["node_modules","dist"],
 }
