@@ -1,7 +1,7 @@
 
 # casl-prisma-generator
 
-casl-prisma-generator generatoes CASL subjects from schema.prisma file
+casl-prisma-generator generates CASL subjects from schema.prisma file
 
 
 ## Installation
@@ -129,3 +129,6 @@ export function createForUser(user: JwtUser) {
   return build();
 }
 ```
+
+# Working Project:
+[nest-prisma-casl-starter](https://github.com/moh1434/nest-prisma-casl-starter): this project implements CASL and Prisma with [NestJs](https://docs.nestjs.com/)
