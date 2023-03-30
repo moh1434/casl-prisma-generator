@@ -1,12 +1,12 @@
 import { writeFileSync, mkdirSync, WriteFileOptions } from 'fs';
+import { dirname } from 'path';
 
 export function writeFileSyncRecursive(
   filePath: string,
   content: string | NodeJS.ArrayBufferView,
   charset?: WriteFileOptions,
 ) {
-  const directoryPath = filePath.slice(0, filePath.lastIndexOf('/'));
-  mkdirSync(directoryPath, { recursive: true });
+  mkdirSync(dirname(filePath), { recursive: true });
 
   writeFileSync(filePath, content, charset);
 }
