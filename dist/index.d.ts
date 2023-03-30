@@ -5,9 +5,8 @@ export type OverrideSubjects = {
     };
 };
 declare const defaultPaths: {
-    outputPath: string;
     prismaSchemaPath: string;
     prismaClientPath: string;
 };
-export declare function generateCaslSubjectsToFile(overrides?: OverrideSubjects, paths?: Partial<typeof defaultPaths>): void;
+export declare function generateCaslSubjectsToFile(outputPath: string, overrides?: OverrideSubjects, pathsConfig?: Partial<typeof defaultPaths>): void;
 export {};

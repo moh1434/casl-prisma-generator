@@ -13,7 +13,6 @@ var __assign = (this && this.__assign) || function () {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.generateCaslSubjectsToFile = void 0;
 var fs_1 = require("fs");
-var path_1 = require("path");
 var writeFileSyncRecursive_1 = require("./writeFileSyncRecursive");
 function extractModelsNames(prismaSchemaPath) {
     var schemaContent = (0, fs_1.readFileSync)(prismaSchemaPath).toString();
@@ -62,16 +61,15 @@ function generateCaslSubjectsList(models, prismaClientPath, overrides) {
     return result;
 }
 var defaultPaths = {
-    outputPath: (0, path_1.resolve)(__dirname, 'generated/subjectsList.ts'),
     prismaSchemaPath: 'prisma/schema.prisma',
     prismaClientPath: '@prisma/client',
 };
-function generateCaslSubjectsToFile(overrides, paths) {
+function generateCaslSubjectsToFile(outputPath, overrides, pathsConfig) {
     if (overrides === void 0) { overrides = {}; }
-    if (paths === void 0) { paths = defaultPaths; }
-    var pathsWithDefaults = __assign(__assign({}, defaultPaths), paths);
-    var prismaModels = extractModelsNames(pathsWithDefaults.prismaSchemaPath);
-    (0, writeFileSyncRecursive_1.writeFileSyncRecursive)(pathsWithDefaults.outputPath, generateCaslSubjectsList(prismaModels, pathsWithDefaults.prismaClientPath, overrides));
+    if (pathsConfig === void 0) { pathsConfig = defaultPaths; }
+    var paths = __assign(__assign({}, defaultPaths), pathsConfig);
+    var prismaModels = extractModelsNames(paths.prismaSchemaPath);
+    (0, writeFileSyncRecursive_1.writeFileSyncRecursive)(outputPath, generateCaslSubjectsList(prismaModels, paths.prismaClientPath, overrides));
 }
 exports.generateCaslSubjectsToFile = generateCaslSubjectsToFile;
 //# sourceMappingURL=index.js.map
