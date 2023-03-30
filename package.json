@@ -4,6 +4,7 @@
   "description": "This package generates subjects for CASL from prisma schema models",
   "main": "index.ts",
   "scripts": {
+    "build": "tsc -p ./tsconfig.json",
     "test": "npx ts-node ./test/script.ts"
   },
   "keywords": [
@@ -17,5 +18,8 @@
   "license": "MIT",
   "devDependencies": {
     "@types/node": "^18.15.11"
+  },
+  "dependencies": {
+    "typescript": "^5.0.2"
   }
 }
