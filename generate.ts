@@ -14,13 +14,13 @@ function extractModelsNames(prismaSchemaPath) {
   return matches; //['User', 'Post', ...]
 }
 
-export type OverrideModel = {
+export type OverrideSubjects = {
   [key in string]: { typeName: string; importPath: string };
 };
 function generateCaslSubjectsList(
   models: string[],
   prismaClientPath: string,
-  overrides: OverrideModel = {},
+  overrides: OverrideSubjects = {},
 ) {
   for (const override of Object.keys(overrides)) {
     if (!models.includes(override)) {
@@ -85,7 +85,7 @@ const defaultPaths = {
  * });
  */
 export function generateCaslSubjectsToFile(
-  overrides: OverrideModel = {},
+  overrides: OverrideSubjects = {},
   paths: Partial<typeof defaultPaths> = defaultPaths,
 ) {
   paths = { ...defaultPaths, ...paths }; //merge paths
