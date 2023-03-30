@@ -1,4 +1,3 @@
-"use strict";
 var __assign = (this && this.__assign) || function () {
     __assign = Object.assign || function(t) {
         for (var s, i = 1, n = arguments.length; i < n; i++) {
@@ -10,13 +9,11 @@ var __assign = (this && this.__assign) || function () {
     };
     return __assign.apply(this, arguments);
 };
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.generateCaslSubjectsToFile = void 0;
-var fs_1 = require("fs");
-var path_1 = require("path");
-var writeFileSyncRecursive_1 = require("./writeFileSyncRecursive");
+import { readFileSync } from 'fs';
+import { resolve } from 'path';
+import { writeFileSyncRecursive } from './writeFileSyncRecursive';
 function extractModelsNames(prismaSchemaPath) {
-    var schemaContent = (0, fs_1.readFileSync)(prismaSchemaPath).toString();
+    var schemaContent = readFileSync(prismaSchemaPath).toString();
     var regex = /model\s+(\w+)\s+{/g;
     var matches = [];
     var match;
@@ -62,16 +59,15 @@ function generateCaslSubjectsList(models, prismaClientPath, overrides) {
     return result;
 }
 var defaultPaths = {
-    outputPath: (0, path_1.resolve)(__dirname, 'generated/subjectsList.ts'),
+    outputPath: resolve(__dirname, 'generated/subjectsList.ts'),
     prismaSchemaPath: 'prisma/schema.prisma',
     prismaClientPath: '@prisma/client',
 };
-function generateCaslSubjectsToFile(overrides, paths) {
+export function generateCaslSubjectsToFile(overrides, paths) {
     if (overrides === void 0) { overrides = {}; }
     if (paths === void 0) { paths = defaultPaths; }
     paths = __assign(__assign({}, defaultPaths), paths);
     var prismaModels = extractModelsNames(paths.prismaSchemaPath);
-    (0, writeFileSyncRecursive_1.writeFileSyncRecursive)(paths.outputPath, generateCaslSubjectsList(prismaModels, paths.prismaClientPath, overrides));
+    writeFileSyncRecursive(paths.outputPath, generateCaslSubjectsList(prismaModels, paths.prismaClientPath, overrides));
 }
-exports.generateCaslSubjectsToFile = generateCaslSubjectsToFile;
 //# sourceMappingURL=index.js.map
