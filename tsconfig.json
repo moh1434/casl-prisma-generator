@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "module": "CommonJS",
-    "declaration": false,
+    "declaration": true,
     "removeComments": false,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
@@ -18,6 +18,11 @@
     "forceConsistentCasingInFileNames": false,
     "noFallthroughCasesInSwitch": false,
     "typeRoots": ["./node_modules/@types"],
+    "allowJs": true,
+    "checkJs": true,
+    "emitDeclarationOnly": true,
+    "maxNodeModuleJsDepth": 5,
+    "downlevelIteration": true
   },
   "exclude":["node_modules","dist","test/generated/subjectsList.example.ts"],
 }
