@@ -64,7 +64,6 @@ function generateCaslSubjectsList(
 }
 
 const defaultPaths = {
-  outputPath: 'generated/subjectsList.ts',
   prismaSchemaPath: 'prisma/schema.prisma',
   prismaClientPath: '@prisma/client',
 };
@@ -77,20 +76,15 @@ const defaultPaths = {
  *     importPath: "import { JwtUser } from 'src/auth/types';",
  *   },
  * };
- * generateCaslSubjectsToFile(overrides, {
- *   outputPath: 'generated/subjectsList.ts',
+ * generateCaslSubjectsToFile('generated/subjectsList.ts',overrides , {
  *   prismaSchemaPath: 'prisma/schema.prisma',
  *   prismaClientPath: '@prisma/client',
  * });
  * @example
- * generateCaslSubjectsToFile();
- *
- * @example
- * generateCaslSubjectsToFile({}, {
- *   outputPath: 'generated/subjectsList.ts',
- * });
+ * generateCaslSubjectsToFile('generated/subjectsList.ts');
  */
 export function generateCaslSubjectsToFile(
+  outputPath: string,
   overrides: OverrideSubjects = {},
   pathsConfig: Partial<typeof defaultPaths> = defaultPaths,
 ) {
@@ -98,7 +92,7 @@ export function generateCaslSubjectsToFile(
 
   const prismaModels = extractModelsNames(paths.prismaSchemaPath);
   writeFileSyncRecursive(
-    paths.outputPath,
+    outputPath,
     generateCaslSubjectsList(prismaModels, paths.prismaClientPath, overrides),
   );
 }
