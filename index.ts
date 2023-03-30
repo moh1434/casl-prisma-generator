@@ -1,5 +1,4 @@
 import { readFileSync } from 'fs';
-import { resolve } from 'path';
 
 import { writeFileSyncRecursive } from './writeFileSyncRecursive';
 
@@ -65,7 +64,7 @@ function generateCaslSubjectsList(
 }
 
 const defaultPaths = {
-  outputPath: resolve(__dirname, 'generated/subjectsList.ts'),
+  outputPath: 'generated/subjectsList.ts',
   prismaSchemaPath: 'prisma/schema.prisma',
   prismaClientPath: '@prisma/client',
 };
@@ -79,7 +78,7 @@ const defaultPaths = {
  *   },
  * };
  * generateCaslSubjectsToFile(overrides, {
- *   outputPath: path.resolve(__dirname, 'generated/subjectsList.ts'),
+ *   outputPath: 'generated/subjectsList.ts',
  *   prismaSchemaPath: 'prisma/schema.prisma',
  *   prismaClientPath: '@prisma/client',
  * });
@@ -88,7 +87,7 @@ const defaultPaths = {
  *
  * @example
  * generateCaslSubjectsToFile({}, {
- *   outputPath: path.resolve(__dirname, 'generated/subjectsList.ts'),
+ *   outputPath: 'generated/subjectsList.ts',
  * });
  */
 export function generateCaslSubjectsToFile(
