@@ -1,5 +1,6 @@
 import * as fs from 'fs';
 import * as path from 'path';
+import { writeFileSyncRecursive } from './writeFileSyncRecursive';
 
 function extractModelsNames(prismaSchemaPath) {
   const schemaContent = fs.readFileSync(prismaSchemaPath).toString();
@@ -91,7 +92,7 @@ export function generateCaslSubjectsToFile(
   paths = { ...defaultPaths, ...paths }; //merge paths
 
   const prismaModels = extractModelsNames(paths.prismaSchemaPath);
-  fs.writeFileSync(
+  writeFileSyncRecursive(
     paths.outputPath,
     generateCaslSubjectsList(prismaModels, paths.prismaClientPath, overrides),
   );
