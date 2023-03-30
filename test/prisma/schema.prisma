@@ -1,0 +1,33 @@
+generator client {
+    provider = "prisma-client-js"
+}
+
+datasource db {
+    provider = "mysql"
+    url      = env("DATABASE_URL")
+}
+
+enum UserType {
+    ADMIN
+    USER
+}
+
+model User {
+    id        String   @id @default(uuid())
+    type      UserType @default(USER)
+    password  String
+    createdAt DateTime @default(now())
+}
+
+model Post {
+    id      String @id @default(uuid())
+    content String @db.VarChar(2048)
+}
+
+model Item {
+    id String @id @default(uuid())
+}
+
+model Subject {
+    id String @id @default(uuid())
+}
