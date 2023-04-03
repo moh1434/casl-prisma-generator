@@ -16,7 +16,7 @@ function extractModelsNames(prismaSchemaPath: string) {
 }
 
 export type OverrideSubjects = {
-  [key in string]: { typeName: string; importPath: string };
+  [key in string]: { typeName: string; importPath: string } | null;
 };
 function generateCaslSubjectsList(
   models: string[],
@@ -38,6 +38,10 @@ function generateCaslSubjectsList(
   const content = ['export type SubjectsList = {'];
   models.map((model) => {
     if (model in overrides) {
+      if (overrides[model] === null) {
+        //exclude unWanted models
+        return;
+      }
       customImports.push(overrides[model].importPath);
       content.push(`  ${model}: ${overrides[model].typeName};`);
     } else {
@@ -75,6 +79,7 @@ const defaultPaths = {
  *     typeName: 'JwtUser',
  *     importPath: "import { JwtUser } from 'src/auth/types';",
  *   },
+ *   Post: null,
  * };
  * generateCaslSubjectsToFile('generated/subjectsList.ts',overrides , {
  *   prismaSchemaPath: 'prisma/schema.prisma',
@@ -83,6 +88,7 @@ const defaultPaths = {
  * @example
  * generateCaslSubjectsToFile('generated/subjectsList.ts');
  */
+
 export function generateCaslSubjectsToFile(
   outputPath: string,
   overrides: OverrideSubjects = {},

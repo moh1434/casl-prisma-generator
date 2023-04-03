@@ -1,10 +1,14 @@
-import { generateCaslSubjectsToFile } from 'casl-prisma-generator';
+import {
+  generateCaslSubjectsToFile,
+  OverrideSubjects,
+} from 'casl-prisma-generator';
 
-const overrides = {
+const overrides: OverrideSubjects = {
   User: {
     typeName: 'JwtUser',
     importPath: "import { JwtUser } from 'test/auth-types';",
   },
+  Post: null,
 };
 
 generateCaslSubjectsToFile('test/generated/subjectsList.ts', overrides, {

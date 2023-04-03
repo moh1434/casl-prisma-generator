@@ -13,7 +13,7 @@
     "incremental": true,
     "skipLibCheck": true,
     "strictNullChecks": false,
-    "noImplicitAny": false,
+    "noImplicitAny": true,
     "strictBindCallApply": false,
     "forceConsistentCasingInFileNames": false,
     "noFallthroughCasesInSwitch": false,
@@ -24,5 +24,5 @@
     "maxNodeModuleJsDepth": 5,
     "downlevelIteration": true
   },
-  "exclude":["node_modules","dist","test/generated/subjectsList.example.ts"],
+  "exclude": ["node_modules", "dist", "test/generated/subjectsList.example.ts"]
 }
