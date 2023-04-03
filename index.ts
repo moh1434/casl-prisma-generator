@@ -2,6 +2,11 @@ import { readFileSync } from 'fs';
 
 import { writeFileSyncRecursive } from './writeFileSyncRecursive';
 
+export type OverrideSubjects = {
+  [key in string]: { typeName: string; importPath: string } | null;
+};
+//
+
 function extractModelsNames(prismaSchemaPath: string) {
   const schemaContent = readFileSync(prismaSchemaPath).toString();
 
@@ -15,9 +20,6 @@ function extractModelsNames(prismaSchemaPath: string) {
   return matches; //['User', 'Post', ...]
 }
 
-export type OverrideSubjects = {
-  [key in string]: { typeName: string; importPath: string } | null;
-};
 function generateCaslSubjectsList(
   models: string[],
   prismaClientPath: string,
@@ -81,7 +83,7 @@ const defaultPaths = {
  *   },
  *   Post: null,
  * };
- * generateCaslSubjectsToFile('generated/subjectsList.ts',overrides , {
+ * generateCaslSubjectsToFile('generated/subjectsList.ts', overrides, {
  *   prismaSchemaPath: 'prisma/schema.prisma',
  *   prismaClientPath: '@prisma/client',
  * });
@@ -94,7 +96,7 @@ export function generateCaslSubjectsToFile(
   overrides: OverrideSubjects = {},
   pathsConfig: Partial<typeof defaultPaths> = defaultPaths,
 ) {
-  const paths = { ...defaultPaths, ...pathsConfig }; //merge paths
+  const paths = { ...defaultPaths, ...pathsConfig }; //override default paths
 
   const prismaModels = extractModelsNames(paths.prismaSchemaPath);
   writeFileSyncRecursive(
