@@ -53,6 +53,7 @@ model Subject {
 
 ```ts
 import { generateCaslSubjectsToFile } from 'casl-prisma-generator';
+//OR: import { generateCaslSubjectsToFile } from 'casl-prisma-generator/dist';
 
 generateCaslSubjectsToFile('src/casl/generated/subjectsList.ts');
 ```
