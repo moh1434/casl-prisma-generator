@@ -1,8 +1,6 @@
-
 # casl-prisma-generator
 
 casl-prisma-generator generates CASL subjects from schema.prisma file
-
 
 ## Installation
 
@@ -15,13 +13,16 @@ casl-prisma-generator generates CASL subjects from schema.prisma file
 ```
 
 ## Usage Example
+
 In `package.json` add:
+
 ```json
 "casl-generate": "npx ts-node ./src/casl/generator.ts",
 "prisma:generate": "prisma generate && npm run casl-generate",
 ```
 
 #### Asuming we have this `schema.prisma` file:
+
 ```prisma
 enum UserType {
   ADMIN
@@ -49,12 +50,15 @@ model Subject {
 ```
 
 ### Example1 `src/casl/generator.ts`
+
 ```ts
 import { generateCaslSubjectsToFile } from 'casl-prisma-generator';
 
 generateCaslSubjectsToFile('src/casl/generated/subjectsList.ts');
 ```
-The result will be:  `src/casl/generated/subjectsList.ts`:
+
+The result will be: `src/casl/generated/subjectsList.ts`:
+
 ```ts
 /** this file is auto generated, don't touch it **/
 
@@ -66,9 +70,10 @@ export type SubjectsList = {
   Item: Item;
   Subject: Subject;
 };
-
 ```
+
 ### Example2 `src/casl/generator.ts`
+
 ```ts
 import { generateCaslSubjectsToFile } from 'casl-prisma-generator';
 
@@ -84,7 +89,8 @@ generateCaslSubjectsToFile('src/casl/generated/subjectsList.ts', overrides, {
 });
 ```
 
-The result will be:  `src/casl/generated/subjectsList.ts`:
+The result will be: `src/casl/generated/subjectsList.ts`:
+
 ```ts
 /** this file is auto generated, don't touch it **/
 
@@ -100,6 +106,7 @@ export type SubjectsList = {
 ```
 
 ## Then in our CASL setup: `src/casl/casl-ability.factory.ts`
+
 ```ts
 import { AbilityBuilder, PureAbility } from '@casl/ability';
 import { Subjects } from '@casl/prisma';
@@ -131,4 +138,5 @@ export function createForUser(user: JwtUser) {
 ```
 
 # Working Project:
+
 [nest-prisma-casl-starter](https://github.com/moh1434/nest-prisma-casl-starter): this project implements CASL and Prisma with [NestJs](https://docs.nestjs.com/)
