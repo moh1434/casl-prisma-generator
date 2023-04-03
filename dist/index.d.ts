@@ -2,7 +2,7 @@ export type OverrideSubjects = {
     [key in string]: {
         typeName: string;
         importPath: string;
-    };
+    } | null;
 };
 declare const defaultPaths: {
     prismaSchemaPath: string;
@@ -15,8 +15,9 @@ declare const defaultPaths: {
  *     typeName: 'JwtUser',
  *     importPath: "import { JwtUser } from 'src/auth/types';",
  *   },
+ *   Post: null,
  * };
- * generateCaslSubjectsToFile('generated/subjectsList.ts',overrides , {
+ * generateCaslSubjectsToFile('generated/subjectsList.ts', overrides, {
  *   prismaSchemaPath: 'prisma/schema.prisma',
  *   prismaClientPath: '@prisma/client',
  * });
