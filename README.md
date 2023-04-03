@@ -85,6 +85,7 @@ const overrides: OverrideSubjects = {
     typeName: 'JwtUser',
     importPath: "import { JwtUser } from 'src/auth/types-auth';",
   },
+  Post: null,
 };
 generateCaslSubjectsToFile('src/casl/generated/subjectsList.ts', overrides, {
   prismaSchemaPath: 'prisma/schema.prisma',
@@ -97,16 +98,17 @@ The result will be: `src/casl/generated/subjectsList.ts`:
 ```ts
 /** this file is auto generated, don't touch it **/
 
-import { Post, Item, Subject } from '@prisma/client';
+import { Item, Subject } from '@prisma/client';
 import { JwtUser } from 'src/auth/types-auth';
 
 export type SubjectsList = {
   User: JwtUser;
-  Post: Post;
   Item: Item;
   Subject: Subject;
 };
 ```
+
+Notice: `User: JwtUser;` and we removed `Post: Post;`
 
 ## Then in our CASL setup: `src/casl/casl-ability.factory.ts`
 
