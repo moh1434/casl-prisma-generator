@@ -8,7 +8,7 @@ const overrides = {
     },
     Post: null,
 };
-(0, casl_prisma_generator_1.generateCaslSubjectsToFile)('test/generated/subjectsList.ts', overrides, {
+(0, casl_prisma_generator_1.generateCaslSubjectsToFile)('test/generated/subjectsList.example.ts', overrides, {
     prismaSchemaPath: 'test/prisma/schema.prisma',
 });
 //npm run test

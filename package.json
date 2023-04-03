@@ -6,7 +6,7 @@
   "scripts": {
     "build": "tsc -p ./tsconfig.json",
     "test": "ts-node --esm   ./test/script.ts",
-    "publish": "npm run test && npm run build && npm version patch && npm publish"
+    "publish": "npm run test && npm run build && git add . && git commit -m 'build' && git push && npm version patch && npm publish"
   },
   "keywords": [
     "CASL",

@@ -43,7 +43,9 @@ function generateCaslSubjectsList(models, prismaClientPath, overrides = {}) {
     content.push('};');
     const stringCustomImports = customImports.join('\n');
     const stringPrismaImportsNames = prismaImports.join(', ');
-    const allPrismaImports = `import { ${stringPrismaImportsNames} } from '${prismaClientPath}';`;
+    const allPrismaImports = prismaImports.length
+        ? `import { ${stringPrismaImportsNames} } from '${prismaClientPath}';`
+        : '';
     const result = "/** this file is auto generated, don't touch it **/\n\n" +
         allPrismaImports +
         '\n' +
