@@ -52,8 +52,7 @@ model Subject {
 ### Example1 `src/casl/generator.ts`
 
 ```ts
-import { generateCaslSubjectsToFile } from 'casl-prisma-generator';
-//OR: import { generateCaslSubjectsToFile } from 'casl-prisma-generator/dist';
+import { generateCaslSubjectsToFile } from 'casl-prisma-generator/dist';
 
 generateCaslSubjectsToFile('src/casl/generated/subjectsList.ts');
 ```
@@ -79,7 +78,7 @@ export type SubjectsList = {
 import {
   generateCaslSubjectsToFile,
   OverrideSubjects,
-} from 'casl-prisma-generator';
+} from 'casl-prisma-generator/dist';
 
 const overrides: OverrideSubjects = {
   User: {
